@@ -1,0 +1,158 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 3.9%; /* Dark background */
+    --foreground: 0 0% 98%; /* Light text */
+    --card: 0 0% 5.9%; /* Dark card background */
+    --card-foreground: 0 0% 98%; /* Light card text */
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 210 100% 56%; /* Vibrant Blue */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 140 70% 45%; /* Emerald Green */
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 40%; /* Muted gray */
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 210 100% 56%; /* Same as primary for focus rings */
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Dark theme variables (already set as default) */
+  }
+
+  /* Light theme variables - to be toggled via JS */
+  html:not(.dark) {
+    --background: 0 0% 96.1%; /* Light background */
+    --foreground: 0 0% 3.9%; /* Dark text */
+    --card: 0 0% 100%; /* White card background */
+    --card-foreground: 0 0% 3.9%; /* Dark card text */
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 210 100% 50%; /* Adjusted Blue for light theme */
+    --primary-foreground: 0 0% 98%; /* Text on primary buttons still light */
+    --secondary: 140 65% 40%; /* Adjusted Green for light theme */
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 80%; /* Lighter muted gray */
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 92.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 72.2% 50.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.1%;
+    --input: 0 0% 89.1%;
+    --ring: 210 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif; /* Example of a modern font */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+}
+
+.gradient-text-emerald {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-green-400;
+}
+.gradient-text-crimson {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-pink-500;
+}
+.gradient-text-violet {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-indigo-500;
+}
+.gradient-text-amber {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-orange-500;
+}
+
+
+/* Glassmorphism style */
+.glassmorphic-card {
+  background: rgba(255, 255, 255, 0.05); /* Semi-transparent white for dark theme */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+html:not(.dark) .glassmorphic-card {
+  background: rgba(255, 255, 255, 0.6); /* More opaque white for light theme */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar (optional, for a more futuristic feel) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background) / 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.7);
+  border-radius: var(--radius);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* For Prose styling on blog posts, if you use @tailwindcss/typography */
+.prose {
+  color: hsl(var(--foreground));
+}
+.prose h1, .prose h2, .prose h3, .prose h4, .prose strong, .prose a {
+  color: hsl(var(--foreground));
+}
+.prose a {
+  @apply hover:text-primary transition-colors;
+}
+.prose code {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  border-radius: 3px;
+}
+.prose pre {
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
+  padding: 1em;
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+.prose pre code {
+  background-color: transparent !important;
+  padding: 0;
+  margin: 0;
+}
+.prose blockquote {
+  border-left-color: hsl(var(--primary));
+  color: hsl(var(--muted-foreground));
+}
